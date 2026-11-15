@@ -739,12 +739,14 @@
       $('#memberSearch').oninput = renderAttendance;
       $('#attendanceFilters').addEventListener('click', e => { const b = e.target.closest('[data-filter]'); if (!b) return; statusFilter = b.dataset.filter; $$('#attendanceFilters .pill').forEach(x => x.classList.toggle('active', x === b)); renderAttendance(); });
       $('#saveBtn').onclick = () => {
-        const k = dayK(), selected = [...currentSelection()].sort(), before = [...(state.savedRecords[k] || [])].sort(), removed = before.filter(id => !selected.includes(id));
+        if (!state || mutationBusy) return;
+        const saveDay = iso(date), saveGroup = group;
+        const k = saveGroup + '|' + saveDay, selected = [...currentSelection()].sort(), before = [...(state.savedRecords[k] || [])].sort(), removed = before.filter(id => !selected.includes(id));
         if (!selected.length) { toast('선택한 회원이 없어. 출석한 회원을 체크해줘.'); return; }
         if (removed.length && !confirm('이미 저장된 출석 ' + removed.length + '건을 이 날짜 기록에서 삭제할게. 계속할까?')) return;
         setBusy(true);
-        runServer('saveAttendance', [iso(date), group, selected, before], result => {
-          updateAttendanceLocally(k, iso(date), group, selected);
+        runServer('saveAttendance', [saveDay, saveGroup, selected, before], result => {
+          updateAttendanceLocally(k, saveDay, saveGroup, selected);
           selectionOverrides.set(k, []); setBusy(false); renderAttendance();
           toast('저장 완료 · ' + result.selected + '명 출석 · 선택을 초기화했어' + (result.removed ? ' · ' + result.removed + '건 수정' : ''));
         });
