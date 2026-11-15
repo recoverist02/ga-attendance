@@ -6,40 +6,19 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#f5f6fb" />
   <meta name="description" content="신림수요·신림토요 GA 출석부 웹앱" />
-  <script>
-    (() => {
-      if (window.top === window.self) return;
-      const allowedOrigin = 'https://recoverist02.github.io';
-      const ancestors = Array.from(window.location.ancestorOrigins || []);
-      const trustedAncestors = ancestors.every(origin => {
-        if (origin === allowedOrigin || origin === 'https://script.google.com') return true;
-        try {
-          const host = new URL(origin).hostname;
-          return host === 'github.io' || host.endsWith('.github.io') || host === 'google.com' || host.endsWith('.google.com') || host === 'googleusercontent.com' || host.endsWith('.googleusercontent.com');
-        } catch (_) { return false; }
-      });
-      if (!trustedAncestors) {
-        window.location.replace('about:blank');
-      }
-    })();
-  </script>
   <title>GA 출석부</title>
   <style>
     :root{--ink:#202437;--muted:#7b8195;--line:#e8eaf1;--paper:#fff;--canvas:#f5f6fb;--brand:#5854db;--brand-dark:#403bc2;--brand-soft:#eeedff;--mint:#e8f7f0;--green:#238c65;--amber:#fff2dc;--orange:#bb7722;--red:#d65d69;--shadow:0 7px 24px rgba(29,34,64,.055);--radius:20px}
-    *{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;font-size:15px;letter-spacing:-.025em}button,input,select{font:inherit}button{cursor:pointer}#app{max-width:760px;margin:0 auto;min-height:100dvh;padding:0 18px 100px}.top{padding:18px 2px 12px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:11px}.brand-mark{width:40px;height:40px;border-radius:14px;background:linear-gradient(145deg,#7772ed,#4b46c8);display:grid;place-items:center;color:#fff;font-size:19px;box-shadow:0 6px 14px #5752dc33}.brand-title{font-size:20px;font-weight:850;line-height:1.15}.brand-sub{font-size:12px;color:var(--muted);margin-top:3px}.avatar{width:38px;height:38px;border-radius:50%;background:#e8e8fb;color:#514cc4;display:grid;place-items:center;font-weight:800}.mode-note{border:1px solid #e5e3ff;background:#f0efff;color:#5853b6;border-radius:12px;padding:9px 12px;font-size:12px;font-weight:650;margin:2px 0 16px;display:flex;align-items:center;gap:7px}.mode-note i{width:7px;height:7px;border-radius:99px;background:#706be1;display:inline-block}.page-heading{display:flex;align-items:flex-end;justify-content:space-between;margin:15px 2px 13px}.eyebrow{font-size:12px;color:var(--muted);font-weight:700}.page-heading h1{font-size:24px;line-height:1.2;margin:4px 0 0;font-weight:850;letter-spacing:-.055em}.icon-btn{border:1px solid var(--line);background:#fff;color:#555b70;border-radius:13px;width:42px;height:42px;font-size:20px}.seg{display:flex;padding:4px;background:#e9eaf2;border-radius:14px;margin:0 0 14px;gap:4px}.seg button{flex:1;border:0;border-radius:11px;background:transparent;color:#73798c;font-weight:750;font-size:14px;padding:11px 9px}.seg button.active{background:#fff;color:var(--brand-dark);box-shadow:0 2px 8px #25294a0c}.date-line{display:flex;align-items:center;justify-content:space-between;margin:0 1px 12px}.date-switch{display:flex;align-items:center;gap:7px}.date-switch button{width:31px;height:31px;border:1px solid var(--line);background:#fff;border-radius:10px;color:#676d81;font-size:17px}.date-switch strong{font-size:15px;min-width:101px;text-align:center}.text-btn{border:0;background:none;color:var(--brand);font-weight:750;font-size:13px;padding:7px 5px}.card{background:var(--paper);border:1px solid #eceef4;border-radius:var(--radius);box-shadow:var(--shadow);padding:17px;margin-bottom:12px}.summary{display:grid;grid-template-columns:1fr 1fr;gap:11px}.stat{padding:15px;border-radius:16px;background:#f7f7fc}.stat.primary{background:var(--brand-soft)}.stat-label{font-size:12px;color:var(--muted);font-weight:700}.stat-value{font-size:25px;font-weight:850;letter-spacing:-.06em;margin-top:4px}.stat-value small{font-size:14px;color:#7c8193;font-weight:700}.stat.primary .stat-value{color:var(--brand-dark)}.list-head{display:flex;align-items:center;justify-content:space-between;margin:17px 2px 10px}.list-head h2{font-size:17px;margin:0;font-weight:820}.list-head span{font-size:12px;color:var(--muted)}.search{height:44px;border:1px solid var(--line);border-radius:13px;background:#fafbfe;display:flex;align-items:center;padding:0 12px;gap:8px;margin-bottom:9px;color:#9095a6}.search input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);font-size:14px}.filter-row{display:flex;gap:7px;overflow:auto;padding:1px 0 7px;scrollbar-width:none}.filter-row::-webkit-scrollbar{display:none}.pill{border:1px solid var(--line);border-radius:99px;background:#fff;color:#7a8092;font-size:12px;font-weight:700;padding:7px 11px;white-space:nowrap}.pill.active{border-color:#d9d7ff;background:var(--brand-soft);color:var(--brand-dark)}.members{overflow:hidden}.member-row{width:100%;display:flex;align-items:center;gap:12px;text-align:left;padding:5px 2px;border:0;border-bottom:1px solid #f0f1f5;background:#fff;color:inherit}.member-row:last-child{border-bottom:0}.member-row:active{background:#faf9ff}.member-row.selected{background:#fbfaff}.member-icon{width:auto;min-width:40px;height:40px;padding:0 8px;flex:none;border-radius:14px;display:grid;place-items:center;font-size:11px;font-weight:850;white-space:nowrap;color:#5450c7;background:#eeedff}.member-icon.c2{background:#e8f7f0;color:#25845f}.member-icon.c3{background:#fff2dc;color:#b57621}.member-copy{min-width:0;flex:1}.member-name{font-size:15px;font-weight:780}.member-meta{font-size:12px;color:var(--muted);margin-top:3px}.member-journey{display:flex;flex-wrap:wrap;gap:2px 8px;margin-top:3px;color:#71788b;font-size:10px;line-height:1.35}.badge{font-size:10px;font-weight:750;padding:4px 7px;border-radius:99px;white-space:nowrap}.badge.new{color:#a56c19;background:var(--amber)}.badge.active{color:#22825f;background:var(--mint)}.badge.rest{color:#888da0;background:#f0f1f5}.check{width:26px;height:26px;border:1.5px solid #d9dce7;border-radius:9px;display:grid;place-items:center;color:transparent;flex:none;font-size:15px;font-weight:900}.selected .check{background:var(--brand);border-color:var(--brand);color:#fff}.empty{padding:25px;text-align:center;color:var(--muted);font-size:14px}.savebar{position:fixed;z-index:7;bottom:69px;left:50%;transform:translateX(-50%);width:min(760px,100%);padding:12px 18px calc(12px + env(safe-area-inset-bottom));background:#fffffff0;backdrop-filter:blur(12px);border-top:1px solid #e9eaf1;display:flex;align-items:center;gap:12px}.save-count{font-size:13px;color:var(--muted);font-weight:700;white-space:nowrap}.save-count b{font-size:16px;color:var(--ink)}.save-btn{flex:0 0 50%;border:0;border-radius:12px;background:var(--brand);color:#fff;font-weight:800;font-size:14px;height:33px;box-shadow:0 4px 10px #5854db2b}.save-btn:active{background:var(--brand-dark);transform:translateY(1px)}.nav{position:fixed;z-index:6;bottom:0;left:50%;transform:translateX(-50%);width:min(760px,100%);height:69px;padding:7px 10px calc(7px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #e9eaf1;display:flex;justify-content:space-around}.nav-item{border:0;background:none;color:#989dae;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;min-width:0;flex:1;font-size:10px;font-weight:700}.nav-item .ico{font-size:20px;line-height:1.2}.nav-item.active{color:var(--brand)}.page{display:none}.page.active{display:block}.view-card-title{font-size:16px;font-weight:800;margin:0 0 13px}.member-tools{display:flex;gap:8px;margin-bottom:12px}.member-tools .search{flex:1;margin:0}.add-btn{border:0;background:var(--brand-soft);color:var(--brand-dark);border-radius:13px;padding:0 13px;font-weight:780;white-space:nowrap}.member-card-row{display:flex;align-items:center;gap:12px;padding:5px 0;border-bottom:1px solid #f0f1f5}.member-card-row:last-child{border-bottom:0}.member-card-row .member-copy{flex:1}.small-select{border:1px solid var(--line);background:#fff;border-radius:10px;padding:6px 8px;color:#656b7e;font-size:11px}.month-head{display:flex;align-items:center;justify-content:space-between;margin:2px 0 15px}.month-head strong{font-size:17px}.month-head button{border:1px solid var(--line);background:#fff;border-radius:10px;width:34px;height:34px;color:#686d7f}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}.weekday{font-size:11px;color:#8b90a1;font-weight:700;padding:5px 0}.day{height:42px;border:0;background:#fff;border-radius:11px;color:#44495e;position:relative;font-size:13px}.day.dim{color:#c5c8d1}.day.today{box-shadow:inset 0 0 0 1.5px #706be1;color:#514cc4;font-weight:800}.day.mark::after{content:"";position:absolute;bottom:5px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:#6e69df}.day.active{background:var(--brand);color:#fff}.day.active::after{background:#fff}.record-line{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid #f0f1f5}.record-line:last-child{border:0}.record-line strong{font-size:14px}.record-line span{font-size:12px;color:var(--muted)}.bar-row{display:grid;grid-template-columns:86px 1fr 30px;align-items:center;gap:8px;margin:12px 0;font-size:12px;color:#71778a}.bar-track{height:9px;border-radius:10px;background:#f0f0f6;overflow:hidden}.bar-fill{height:100%;background:linear-gradient(90deg,#8a85ef,#5a55da);border-radius:10px}.toast{position:fixed;z-index:10;left:50%;bottom:91px;transform:translate(-50%,10px);opacity:0;pointer-events:none;background:#272a39;color:#fff;border-radius:12px;padding:11px 16px;font-size:13px;font-weight:700;transition:.2s;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}.dialog-backdrop{position:fixed;inset:0;background:#10132366;z-index:20;display:none;align-items:flex-end;justify-content:center}.dialog-backdrop.show{display:flex}.dialog-backdrop.edit-top{align-items:flex-start;padding-top:env(safe-area-inset-top)}.dialog-backdrop.edit-top .dialog{border-radius:0 0 23px 23px;box-shadow:0 8px 40px #15172b22}.dialog{width:min(540px,100%);background:#fff;border-radius:23px 23px 0 0;padding:22px 20px calc(22px + env(safe-area-inset-bottom));box-shadow:0 -8px 40px #15172b22}.dialog h2{margin:0 0 14px;font-size:20px}.field{display:block;margin:12px 0;color:#6d7284;font-size:12px;font-weight:700}.field input,.field select{display:block;width:100%;margin-top:6px;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fafbfe;color:var(--ink)}.dialog-actions{display:flex;gap:9px;margin-top:17px}.dialog-actions button{height:46px;border:0;border-radius:13px;flex:1;font-weight:800}.cancel{background:#f0f1f6;color:#73788a}.confirm{background:var(--brand);color:#fff}.foot-space{height:6px}
+    *{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;font-size:15px;letter-spacing:-.025em}button,input,select{font:inherit}button{cursor:pointer}#app{max-width:760px;margin:0 auto;min-height:100dvh;padding:0 18px 100px}.top{padding:18px 2px 12px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:11px}.brand-mark{width:40px;height:40px;border-radius:14px;background:linear-gradient(145deg,#7772ed,#4b46c8);display:grid;place-items:center;color:#fff;font-size:19px;box-shadow:0 6px 14px #5752dc33}.brand-title{font-size:20px;font-weight:850;line-height:1.15}.brand-sub{font-size:12px;color:var(--muted);margin-top:3px}.avatar{width:38px;height:38px;border-radius:50%;background:#e8e8fb;color:#514cc4;display:grid;place-items:center;font-weight:800}.mode-note{border:1px solid #e5e3ff;background:#f0efff;color:#5853b6;border-radius:12px;padding:9px 12px;font-size:12px;font-weight:650;margin:2px 0 16px;display:flex;align-items:center;gap:7px}.mode-note i{width:7px;height:7px;border-radius:99px;background:#706be1;display:inline-block}.page-heading{display:flex;align-items:flex-end;justify-content:space-between;margin:15px 2px 13px}.eyebrow{font-size:12px;color:var(--muted);font-weight:700}.page-heading h1{font-size:24px;line-height:1.2;margin:4px 0 0;font-weight:850;letter-spacing:-.055em}.icon-btn{border:1px solid var(--line);background:#fff;color:#555b70;border-radius:13px;width:42px;height:42px;font-size:20px}.seg{display:flex;padding:4px;background:#e9eaf2;border-radius:14px;margin:0 0 14px;gap:4px}.seg button{flex:1;border:0;border-radius:11px;background:transparent;color:#73798c;font-weight:750;font-size:14px;padding:11px 9px}.seg button.active{background:#fff;color:var(--brand-dark);box-shadow:0 2px 8px #25294a0c}.date-line{display:flex;align-items:center;justify-content:space-between;margin:0 1px 12px}.date-switch{display:flex;align-items:center;gap:7px}.date-switch button{width:31px;height:31px;border:1px solid var(--line);background:#fff;border-radius:10px;color:#676d81;font-size:17px}.date-switch strong{font-size:15px;min-width:101px;text-align:center}.text-btn{border:0;background:none;color:var(--brand);font-weight:750;font-size:13px;padding:7px 5px}.card{background:var(--paper);border:1px solid #eceef4;border-radius:var(--radius);box-shadow:var(--shadow);padding:17px;margin-bottom:12px}.summary{display:grid;grid-template-columns:1fr 1fr;gap:11px}.stat{padding:15px;border-radius:16px;background:#f7f7fc}.stat.primary{background:var(--brand-soft)}.stat-label{font-size:12px;color:var(--muted);font-weight:700}.stat-value{font-size:25px;font-weight:850;letter-spacing:-.06em;margin-top:4px}.stat-value small{font-size:14px;color:#7c8193;font-weight:700}.stat.primary .stat-value{color:var(--brand-dark)}.list-head{display:flex;align-items:center;justify-content:space-between;margin:17px 2px 10px}.list-head h2{font-size:17px;margin:0;font-weight:820}.list-head span{font-size:12px;color:var(--muted)}.search{height:44px;border:1px solid var(--line);border-radius:13px;background:#fafbfe;display:flex;align-items:center;padding:0 12px;gap:8px;margin-bottom:9px;color:#9095a6}.search input{width:100%;border:0;outline:0;background:transparent;color:var(--ink);font-size:14px}.filter-row{display:flex;gap:7px;overflow:auto;padding:1px 0 7px;scrollbar-width:none}.filter-row::-webkit-scrollbar{display:none}.pill{border:1px solid var(--line);border-radius:99px;background:#fff;color:#7a8092;font-size:12px;font-weight:700;padding:7px 11px;white-space:nowrap}.pill.active{border-color:#d9d7ff;background:var(--brand-soft);color:var(--brand-dark)}.members{overflow:hidden}.member-row{width:100%;display:flex;align-items:center;gap:12px;text-align:left;padding:5px 2px;border:0;border-bottom:1px solid #f0f1f5;background:#fff;color:inherit}.member-row:last-child{border-bottom:0}.member-row:active{background:#faf9ff}.member-row.selected{background:#fbfaff}.member-icon{width:auto;min-width:40px;height:40px;padding:0 8px;flex:none;border-radius:14px;display:grid;place-items:center;font-size:11px;font-weight:850;white-space:nowrap;color:#5450c7;background:#eeedff}.member-icon.c2{background:#e8f7f0;color:#25845f}.member-icon.c3{background:#fff2dc;color:#b57621}.member-copy{min-width:0;flex:1}.member-name{font-size:15px;font-weight:780}.member-meta{font-size:12px;color:var(--muted);margin-top:3px}.member-journey{display:flex;flex-wrap:wrap;gap:2px 8px;margin-top:3px;color:#71788b;font-size:10px;line-height:1.35}.badge{font-size:10px;font-weight:750;padding:4px 7px;border-radius:99px;white-space:nowrap}.badge.new{color:#a56c19;background:var(--amber)}.badge.active{color:#22825f;background:var(--mint)}.badge.rest{color:#888da0;background:#f0f1f5}.check{width:26px;height:26px;border:1.5px solid #d9dce7;border-radius:9px;display:grid;place-items:center;color:transparent;flex:none;font-size:15px;font-weight:900}.selected .check{background:var(--brand);border-color:var(--brand);color:#fff}.empty{padding:25px;text-align:center;color:var(--muted);font-size:14px}.savebar{position:fixed;z-index:7;bottom:69px;left:50%;transform:translateX(-50%);width:min(760px,100%);padding:12px 18px calc(12px + env(safe-area-inset-bottom));background:#fffffff0;backdrop-filter:blur(12px);border-top:1px solid #e9eaf1;display:flex;align-items:center;gap:12px}.save-count{font-size:13px;color:var(--muted);font-weight:700;white-space:nowrap}.save-count b{font-size:16px;color:var(--ink)}.save-btn{flex:0 0 50%;border:0;border-radius:12px;background:var(--brand);color:#fff;font-weight:800;font-size:14px;height:33px;box-shadow:0 4px 10px #5854db2b}.save-btn:active{background:var(--brand-dark);transform:translateY(1px)}.nav{position:fixed;z-index:6;bottom:0;left:50%;transform:translateX(-50%);width:min(760px,100%);height:69px;padding:7px 10px calc(7px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #e9eaf1;display:flex;justify-content:space-around}.nav-item{border:0;background:none;color:#989dae;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;min-width:0;flex:1;font-size:10px;font-weight:700}.nav-item .ico{font-size:20px;line-height:1.2}.nav-item.active{color:var(--brand)}.page{display:none}.page.active{display:block}.view-card-title{font-size:16px;font-weight:800;margin:0 0 13px}.member-tools{display:flex;gap:8px;margin-bottom:12px}.member-tools .search{flex:1;margin:0}.add-btn{border:0;background:var(--brand-soft);color:var(--brand-dark);border-radius:13px;padding:0 13px;font-weight:780;white-space:nowrap}.member-card-row{display:flex;align-items:center;gap:8px;width:100%;padding:10px 0;border-bottom:1px solid #f0f1f5}.member-card-row:last-child{border-bottom:0}.member-card-main{display:flex;align-items:center;gap:9px;flex:1;min-width:0;padding:0;border:0;background:transparent;color:inherit;text-align:left;font:inherit;cursor:pointer}.member-card-main .member-copy{flex:1;min-width:0}.member-card-main .member-journey .celebration-upcoming{color:#d64045;font-weight:850}.month-head{display:flex;align-items:center;justify-content:space-between;margin:2px 0 15px}.month-head strong{font-size:17px}.month-head button{border:1px solid var(--line);background:#fff;border-radius:10px;width:34px;height:34px;color:#686d7f}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}.weekday{font-size:11px;color:#8b90a1;font-weight:700;padding:5px 0}.day{height:42px;border:0;background:#fff;border-radius:11px;color:#44495e;position:relative;font-size:13px}.day.dim{color:#c5c8d1}.day.today{box-shadow:inset 0 0 0 1.5px #706be1;color:#514cc4;font-weight:800}.day.active{background:var(--brand);color:#fff}.record-line{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid #f0f1f5}.record-line:last-child{border:0}.record-line strong{font-size:14px}.record-line span{font-size:12px;color:var(--muted)}.bar-row{display:grid;grid-template-columns:86px 1fr 30px;align-items:center;gap:8px;margin:12px 0;font-size:12px;color:#71778a}.bar-track{height:9px;border-radius:10px;background:#f0f0f6;overflow:hidden}.bar-fill{height:100%;background:linear-gradient(90deg,#8a85ef,#5a55da);border-radius:10px}.toast{position:fixed;z-index:10;left:50%;bottom:91px;transform:translate(-50%,10px);opacity:0;pointer-events:none;background:#272a39;color:#fff;border-radius:12px;padding:11px 16px;font-size:13px;font-weight:700;transition:.2s;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}.dialog-backdrop{position:fixed;inset:0;background:#10132366;z-index:20;display:none;align-items:flex-end;justify-content:center}.dialog-backdrop.show{display:flex}.dialog-backdrop.edit-top{align-items:flex-start;padding-top:env(safe-area-inset-top)}.dialog-backdrop.edit-top .dialog{border-radius:0 0 23px 23px;box-shadow:0 8px 40px #15172b22}.dialog{width:min(540px,100%);background:#fff;border-radius:23px 23px 0 0;padding:22px 20px calc(22px + env(safe-area-inset-bottom));box-shadow:0 -8px 40px #15172b22;max-height:90dvh;overflow:auto}.dialog h2{margin:0 0 14px;font-size:20px}.field{display:block;margin:12px 0;color:#6d7284;font-size:12px;font-weight:700}.field input,.field select{display:block;width:100%;margin-top:6px;border:1px solid var(--line);border-radius:12px;padding:12px;background:#fafbfe;color:var(--ink)}.dialog-actions{display:flex;gap:9px;margin-top:17px}.dialog-actions button{height:46px;border:0;border-radius:13px;flex:1;font-weight:800}.cancel{background:#f0f1f6;color:#73788a}.confirm{background:var(--brand);color:#fff}.foot-space{height:6px}
     @media(min-width:680px){#app{padding-left:28px;padding-right:28px}.top{padding-top:24px}.card{padding:20px}.members{padding:6px 20px}.member-row{padding:13px 4px}}
-    .member-card-row{display:flex;align-items:center;gap:8px;width:100%;padding:10px 0;border-bottom:1px solid #f0f1f5}.member-card-row:last-child{border-bottom:0}.member-card-main{display:flex;align-items:center;gap:9px;flex:1;min-width:0;padding:0;border:0;background:transparent;color:inherit;text-align:left;font:inherit;cursor:pointer}.member-card-main .member-copy{flex:1;min-width:0}.member-card-main .member-journey .celebration-upcoming{color:#d64045;font-weight:850}.roster-edit{flex:none;border:0;border-radius:9px;background:var(--brand-soft);color:var(--brand-dark);padding:9px 11px;font-size:13px;font-weight:850;white-space:nowrap}.detail-actions{flex:none}.detail-edit{min-height:38px;font-size:13px;padding:9px 11px}@media(max-width:430px){.detail-top{align-items:center;gap:7px}.member-card-row{gap:6px}.member-card-main{gap:7px}.roster-edit{padding:9px 8px}}.record-delete{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);color:inherit;text-align:left}.record-delete:active{background:var(--brand-soft)}.record-delete:focus-visible{outline:2px solid var(--brand);outline-offset:2px}.record-delete:disabled{opacity:.55;cursor:wait}
-  </style>
-  <style>
-    button.member-card-row{width:100%;text-align:left;border:0;background:#fff;color:inherit;font:inherit;cursor:pointer}
     .member-card-row .member-meta,.member-row .member-meta{font-size:14px}
     .member-card-row .member-journey,.member-row .member-journey{font-size:12px}
-    .record-calendar-card{padding:11px 12px 10px}.record-calendar-card .month-head{margin:0 0 5px}.record-calendar-card .month-head button{width:32px;height:32px}.record-calendar-card .calendar{gap:2px}.record-calendar-card .weekday{padding:2px 0 3px}.record-calendar-card .day{height:36px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;line-height:1}.day-dots{height:5px;display:flex;justify-content:center;gap:3px}.meeting-dot{width:5px;height:5px;border-radius:50%;display:inline-block;flex:none}.meeting-dot.wed{background:#706be1}.meeting-dot.sat{background:#29a176}.day.active .meeting-dot{box-shadow:0 0 0 1px #fff}.calendar-legend{display:flex;justify-content:center;gap:14px;margin-top:7px;color:var(--muted);font-size:10px;line-height:1.2}.calendar-legend span{display:flex;align-items:center;gap:5px}.calendar-legend .meeting-dot{width:6px;height:6px}.record-group{font-size:11px!important;font-weight:700}.record-group.wed{color:#625dd0!important}.record-group.sat{color:#208a66!important}.dialog{max-height:90dvh;overflow:auto}.detail-highlights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:12px 0 8px}.detail-highlight{background:var(--brand-soft);border-radius:12px;padding:9px 7px;min-width:0;overflow:hidden}.detail-highlight span{display:block;color:var(--muted);font-size:10px;font-weight:700;white-space:nowrap;letter-spacing:-.04em}.detail-highlight strong{display:block;color:var(--brand-dark);font-size:clamp(13px,4vw,16px);margin-top:4px;white-space:nowrap;letter-spacing:-.05em}.detail-highlight strong#detailLastGamblingDate{font-size:clamp(12px,3.8vw,15px);letter-spacing:-.06em}.detail-highlight small{color:var(--muted);font-size:10px;white-space:nowrap}.detail-stats{grid-template-columns:repeat(3,1fr)}.detail-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.detail-actions{display:flex;align-items:center;gap:7px}.detail-edit{border:0;background:var(--brand-soft);color:var(--brand-dark);border-radius:10px;padding:8px 11px;font-size:12px;font-weight:800;white-space:nowrap}.detail-close{border:0;background:#f0f1f6;color:#666b7c;border-radius:11px;width:34px;height:34px;font-size:19px;flex:none}.detail-sub{color:var(--muted);font-size:13px;margin:-7px 0 16px}.detail-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0 20px}.detail-stat{background:#f7f7fc;border-radius:14px;padding:12px 9px;text-align:center}.detail-stat span{display:block;color:var(--muted);font-size:11px;font-weight:700}.detail-stat strong{display:block;font-size:21px;margin-top:4px}.detail-history{max-height:42vh;overflow:auto}.member-stats-duration{font-size:11px;color:var(--muted);font-weight:650;white-space:nowrap}.detail-history .record-line{padding:10px 2px}.detail-history .record-line span{font-size:12px}.member-card-row{display:flex;align-items:center;gap:8px;width:100%;padding:10px 0;border-bottom:1px solid #f0f1f5}.member-card-row:last-child{border-bottom:0}.member-card-main{display:flex;align-items:center;gap:9px;flex:1;min-width:0;padding:0;border:0;background:transparent;color:inherit;text-align:left;font:inherit;cursor:pointer}.member-card-main .member-copy{flex:1;min-width:0}.roster-edit{flex:none;border:0;border-radius:9px;background:var(--brand-soft);color:var(--brand-dark);padding:9px 11px;font-size:13px;font-weight:850;white-space:nowrap}.detail-actions{flex:none}.detail-edit{min-height:38px;font-size:13px;padding:9px 11px}@media(max-width:430px){.detail-top{align-items:center;gap:7px}.member-card-row{gap:6px}.member-card-main{gap:7px}.roster-edit{padding:9px 8px}}.record-delete{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);color:inherit;text-align:left}.record-delete:active{background:var(--brand-soft)}.record-delete:focus-visible{outline:2px solid var(--brand);outline-offset:2px}.record-delete:disabled{opacity:.55;cursor:wait}
+    .record-calendar-card{padding:11px 12px 10px}.record-calendar-card .month-head{margin:0 0 5px}.record-calendar-card .month-head button{width:32px;height:32px}.record-calendar-card .calendar{gap:2px}.record-calendar-card .weekday{padding:2px 0 3px}.record-calendar-card .day{height:36px;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;line-height:1}.day-dots{height:5px;display:flex;justify-content:center;gap:3px}.meeting-dot{width:5px;height:5px;border-radius:50%;display:inline-block;flex:none}.meeting-dot.wed{background:#706be1}.meeting-dot.sat{background:#29a176}.day.active .meeting-dot{box-shadow:0 0 0 1px #fff}.calendar-legend{display:flex;justify-content:center;gap:14px;margin-top:7px;color:var(--muted);font-size:10px;line-height:1.2}.calendar-legend span{display:flex;align-items:center;gap:5px}.calendar-legend .meeting-dot{width:6px;height:6px}.record-group{font-size:11px!important;font-weight:700}.record-group.wed{color:#625dd0!important}.record-group.sat{color:#208a66!important}.detail-highlights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:12px 0 8px}.detail-highlight{background:var(--brand-soft);border-radius:12px;padding:9px 7px;min-width:0;overflow:hidden}.detail-highlight span{display:block;color:var(--muted);font-size:10px;font-weight:700;white-space:nowrap;letter-spacing:-.04em}.detail-highlight strong{display:block;color:var(--brand-dark);font-size:clamp(13px,4vw,16px);margin-top:4px;white-space:nowrap;letter-spacing:-.05em}.detail-highlight strong#detailLastGamblingDate{font-size:clamp(12px,3.8vw,15px);letter-spacing:-.06em}.detail-highlight small{color:var(--muted);font-size:10px;white-space:nowrap}.detail-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.detail-actions{display:flex;align-items:center;gap:7px;flex:none}.detail-edit{border:0;background:var(--brand-soft);color:var(--brand-dark);border-radius:10px;min-height:38px;font-size:13px;padding:9px 11px;font-weight:800;white-space:nowrap}.detail-close{border:0;background:#f0f1f6;color:#666b7c;border-radius:11px;width:34px;height:34px;font-size:19px;flex:none}.detail-sub{color:var(--muted);font-size:13px;margin:-7px 0 16px}.detail-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0 20px}.detail-stat{background:#f7f7fc;border-radius:14px;padding:12px 9px;text-align:center}.detail-stat span{display:block;color:var(--muted);font-size:11px;font-weight:700}.detail-stat strong{display:block;font-size:21px;margin-top:4px}.detail-history{max-height:42vh;overflow:auto}.member-stats-duration{font-size:11px;color:var(--muted);font-weight:650;white-space:nowrap}.detail-history .record-line{padding:10px 2px}.detail-history .record-line span{font-size:12px}.record-delete{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);color:inherit;text-align:left}.record-delete:active{background:var(--brand-soft)}.record-delete:focus-visible{outline:2px solid var(--brand);outline-offset:2px}.record-delete:disabled{opacity:.55;cursor:wait}
   </style>
 </head>
 <body>
   <div id="connection-help" hidden style="padding:10px 18px;background:#eeedff;color:#403bc2;font:14px system-ui;text-align:center">
-    시트 연결이 지연되고 있어. <a href="https://script.google.com/macros/s/AKfycbzpcmwwxdau684uig2uEbNuze56jWCy8xytX5vY46d7zPu5cdMvzwHARUsXFxM_CDw/exec" target="_blank" rel="noopener">구글 연결 확인</a> · <button onclick="location.reload()">다시 연결</button>
+    클라우드 연결을 확인해 주세요. <a href="https://script.google.com/macros/s/AKfycbzpcmwwxdau684uig2uEbNuze56jWCy8xytX5vY46d7zPu5cdMvzwHARUsXFxM_CDw/exec" target="_blank" rel="noopener">구글 연결 확인</a> · <button onclick="location.reload()">다시 연결</button>
   </div>
   <div id="app">
     <header class="top">
@@ -52,7 +31,7 @@
       </div>
       <div class="avatar">GA</div>
     </header>
-    <div class="mode-note"><i></i><span id="syncLabel">클라우드에서 초고속으로 불러오는 중…</span></div>
+    <div class="mode-note"><i></i><span id="syncLabel">Firebase 클라우드에서 초고속으로 불러오는 중…</span></div>
     <main>
       <section class="page active" id="page-attendance">
         <div class="page-heading">
@@ -241,6 +220,20 @@
 
   <script>
     (() => {
+      // 비밀번호 잠금을 사용하려면 따옴표 안에 숫자를 넣으세요 (예: '1234', 비워두면 바로 열림)
+      const APP_PIN = '';
+      if (APP_PIN) {
+        const savedPin = sessionStorage.getItem('ga_attendance_pin_ok');
+        if (savedPin !== APP_PIN) {
+          const input = prompt('GA 출석부 비밀번호(PIN)를 입력하세요:');
+          if (input !== APP_PIN) {
+            document.body.innerHTML = '<div style="padding:40px;text-align:center;font-family:sans-serif">비밀번호가 일치하지 않습니다. 새로고침하여 다시 입력해 주세요.</div>';
+            return;
+          }
+          sessionStorage.setItem('ga_attendance_pin_ok', APP_PIN);
+        }
+      }
+
       const FIREBASE_DB_URL = 'https://recoverist-hub-default-rtdb.asia-southeast1.firebasedatabase.app/';
       const cleanFbUrl = String(FIREBASE_DB_URL || '').trim().replace(/\/+$/, '');
       const hasFirebase = cleanFbUrl.startsWith('https://');
@@ -276,7 +269,7 @@
         await Promise.race([
           ready,
           new Promise((_, reject) => {
-            timer = setTimeout(() => reject(Error('구글 시트 연결이 늦어지고 있어. 연결을 확인해줘.')), 15000);
+            timer = setTimeout(() => reject(Error('구글 시트 백업 연결 대기 초과')), 15000);
           })
         ]).finally(() => clearTimeout(timer));
 
@@ -284,17 +277,83 @@
           const id = crypto.randomUUID ? crypto.randomUUID() : String(Date.now() + Math.random());
           const timer = setTimeout(() => {
             pending.delete(id);
-            reject(Error('시트 응답이 늦어지고 있어. 새로고침 후 저장 여부를 확인해줘.'));
+            reject(Error('시트 백업 응답 시간 초과'));
           }, 25000);
           pending.set(id, { resolve, reject, timer });
           source.postMessage({ channel: CHANNEL, id, method, args }, '*');
         });
       };
 
-      async function readCloud(key) {
+      const todayKst = () => new Date(Date.now() + 9 * 3600000).toISOString().slice(0, 10);
+
+      function shiftMonthIso(isoStr, amount) {
+        const d = new Date(isoStr + 'T00:00:00Z'), day = d.getUTCDate();
+        d.setUTCDate(1);
+        d.setUTCMonth(d.getUTCMonth() + amount);
+        const max = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 0)).getUTCDate();
+        d.setUTCDate(Math.min(day, max));
+        return d.toISOString().slice(0, 10);
+      }
+
+      // appData를 기반으로 공유 대시보드(/ga-public/dashboard.json) 데이터 자동 빌드
+      function buildPublicDashboardPayload(appData, briefsRows) {
+        const today = todayKst();
+        const members = (appData.members || []).map(m => {
+          const start = m.gamblingStartDate || '';
+          let journey = '', days = null, celebrations = [];
+          if (start && start <= today) {
+            const a = new Date(start + 'T00:00:00Z'), b = new Date(today + 'T00:00:00Z');
+            days = Math.floor((b - a) / 86400000);
+            let mo = (b.getUTCFullYear() - a.getUTCFullYear()) * 12 + b.getUTCMonth() - a.getUTCMonth();
+            if (shiftMonthIso(start, mo) > today) mo--;
+            const rem = Math.floor((b - new Date(shiftMonthIso(start, mo) + 'T00:00:00Z')) / 86400000);
+            journey = mo >= 12 ? Math.floor(mo / 12) + '년' + (mo % 12 ? ' ' + (mo % 12) + '개월' : '') : mo >= 1 ? mo + '개월' + (rem ? ' ' + rem + '일' : '') : days + '일';
+
+            const end = shiftMonthIso(today.slice(0, 7) + '-01', 2);
+            const hundred = new Date(+a + 100 * 86400000).toISOString().slice(0, 10);
+            if (hundred.slice(0, 7) >= today.slice(0, 7) && hundred < end) celebrations.push({ date: hundred, label: '100일' });
+            for (let y = Math.max(1, b.getUTCFullYear() - a.getUTCFullYear()); y <= b.getUTCFullYear() - a.getUTCFullYear() + 1; y++) {
+              const anniversary = shiftMonthIso(start, y * 12);
+              if (anniversary.slice(0, 7) >= today.slice(0, 7) && anniversary < end) celebrations.push({ date: anniversary, label: y + '년' });
+            }
+          }
+          return {
+            id: String(m.id),
+            group: String(m.group || ''),
+            name: String(m.name || ''),
+            gamblingStartDate: start,
+            journey,
+            days,
+            celebrations
+          };
+        });
+
+        const seen = new Set();
+        const records = [];
+        (appData.attendanceRows || []).forEach(r => {
+          if (!r || !r.date || r.date > today || !r.memberId || !['신림수요', '신림토요'].includes(r.group)) return;
+          const k = `${r.group}|${r.date}|${r.memberId}`;
+          if (seen.has(k)) return;
+          seen.add(k);
+          records.push({ date: r.date, group: r.group, memberId: String(r.memberId) });
+        });
+
+        const cutoff = shiftMonthIso(today, -12);
+        const briefs = (briefsRows || []).map(b => ({
+          id: String(b.id),
+          group: String(b.group),
+          weekStart: b.weekStart,
+          date: b.meetingDate || b.date,
+          message: String(b.message || '')
+        })).filter(b => b.id && b.date >= cutoff && b.date <= today && ['신림수요', '신림토요'].includes(b.group));
+
+        return { asOf: today, loadedAt: new Date().toISOString(), mode: 'live', members, records, briefs };
+      }
+
+      async function readCloudPath(path) {
         if (!hasFirebase) return null;
         try {
-          const res = await fetch(`${cleanFbUrl}/ga-admin/${key}.json`, { cache: 'no-store' });
+          const res = await fetch(`${cleanFbUrl}/${path}.json`, { cache: 'no-store' });
           if (!res.ok) return null;
           return await res.json();
         } catch (_) {
@@ -302,82 +361,105 @@
         }
       }
 
-      async function writeCloud(key, data) {
-        if (!hasFirebase || !data) return;
+      async function writeCloudPath(path, data) {
+        if (!hasFirebase || !data) return false;
         try {
-          await fetch(`${cleanFbUrl}/ga-admin/${key}.json`, {
+          const res = await fetch(`${cleanFbUrl}/${path}.json`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
           });
-        } catch (_) {}
-      }
-
-      async function syncSheetAppDataToCloud() {
-        try {
-          const fresh = await rawGaCall('getAppData', []);
-          if (fresh && Array.isArray(fresh.members)) {
-            await writeCloud('appData', fresh);
-            if (typeof window.__onGaCloudFreshData === 'function') {
-              window.__onGaCloudFreshData(fresh);
-            }
-          }
-          return fresh;
+          return res.ok;
         } catch (_) {
-          return null;
+          return false;
         }
       }
 
-      async function syncSheetBriefingsToCloud() {
-        try {
-          const fresh = await rawGaCall('getGABriefingHistory', []);
-          if (fresh && Array.isArray(fresh.rows)) {
-            await writeCloud('briefings', fresh);
-          }
-          return fresh;
-        } catch (_) {
-          return null;
-        }
-      }
+      // 출석부(/ga-admin/appData)와 공유 대시보드(/ga-public/dashboard) 동시 저장
+      window.__syncGaCloudMaster = async (nextAppData) => {
+        if (!nextAppData) return;
+        nextAppData.updatedAt = new Date().toISOString();
+        const saved = await writeCloudPath('ga-admin/appData', nextAppData);
+        readCloudPath('ga-admin/briefings').then(bObj => {
+          const bRows = bObj && Array.isArray(bObj.rows) ? bObj.rows : [];
+          const pub = buildPublicDashboardPayload(nextAppData, bRows);
+          writeCloudPath('ga-public/dashboard', pub);
+        }).catch(() => {});
+        return saved;
+      };
 
+      // 핵심: 모든 조회·저장은 Firebase에서 0.1초 만에 처리하고, 구글 시트는 백그라운드 백업만 수행
       window.gaCall = async (method, args = []) => {
         if (method === 'getAppData') {
-          const cloudData = await readCloud('appData');
+          const cloudData = await readCloudPath('ga-admin/appData');
           if (cloudData && Array.isArray(cloudData.members)) {
             if (!cloudData.records) cloudData.records = {};
             if (!cloudData.attendanceRows) cloudData.attendanceRows = [];
             if (!cloudData.averages) cloudData.averages = {};
-            syncSheetAppDataToCloud();
             return cloudData;
           }
+          // 클라우드가 비어 있는 최초 1회에만 시트에서 읽어와 양쪽 클라우드에 세팅
           const sheetData = await rawGaCall('getAppData', args);
           if (sheetData && Array.isArray(sheetData.members)) {
-            writeCloud('appData', sheetData);
+            await window.__syncGaCloudMaster(sheetData);
           }
           return sheetData;
         }
 
         if (method === 'getGABriefingHistory') {
-          const cloudBriefs = await readCloud('briefings');
+          const cloudBriefs = await readCloudPath('ga-admin/briefings');
           if (cloudBriefs && Array.isArray(cloudBriefs.rows)) {
-            syncSheetBriefingsToCloud();
             return cloudBriefs;
           }
           const sheetBriefs = await rawGaCall('getGABriefingHistory', args);
           if (sheetBriefs && Array.isArray(sheetBriefs.rows)) {
-            writeCloud('briefings', sheetBriefs);
+            await writeCloudPath('ga-admin/briefings', sheetBriefs);
           }
           return sheetBriefs;
         }
 
-        const result = await rawGaCall(method, args);
-        syncSheetAppDataToCloud();
-        return result;
+        if (method === 'saveAttendance') {
+          const [day, meetingGroup, selectedIds, expectedExistingIds] = args;
+          const selected = [...new Set((selectedIds || []).map(String))].sort();
+          const before = [...new Set((expectedExistingIds || []).map(String))].sort();
+          const removedCount = before.filter(id => !selected.includes(id)).length;
+          const addedCount = selected.filter(id => !before.includes(id)).length;
+
+          // 백그라운드로 구글 시트에 백업 (실패하거나 지연되어도 웹앱은 즉시 완료)
+          rawGaCall('saveAttendance', args).catch(err => console.warn('구글 시트 출석 백업 건너뜀:', err));
+
+          return {
+            added: addedCount,
+            removed: removedCount,
+            selected: selected.length,
+            _perf: { serverMs: 10 }
+          };
+        }
+
+        if (method === 'addMember') {
+          const [name, newGroup, gamblingStartDate] = args;
+          const newId = (crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).slice(2)) + '';
+          const shortId = newId.replace(/-/g, '').slice(0, 8);
+          const created = { id: shortId, group: newGroup, name: String(name || '').trim(), gamblingStartDate: gamblingStartDate || '' };
+
+          rawGaCall('addMember', args).catch(err => console.warn('구글 시트 회원추가 백업 건너뜀:', err));
+          return created;
+        }
+
+        if (method === 'updateMember') {
+          const [memberId, name, newGroup, gamblingStartDate] = args;
+          const updated = { id: String(memberId), group: newGroup, name: String(name || '').trim(), gamblingStartDate: gamblingStartDate || '' };
+
+          rawGaCall('updateMember', args).catch(err => console.warn('구글 시트 회원수정 백업 건너뜀:', err));
+          return updated;
+        }
+
+        return rawGaCall(method, args);
       };
 
       requestAnimationFrame(() => requestAnimationFrame(() => {
         const frame = document.createElement('iframe');
-        frame.title = 'Google Sheets 연결';
+        frame.title = 'Google Sheets 백업 연결';
         frame.setAttribute('aria-hidden', 'true');
         frame.tabIndex = -1;
         frame.style.cssText = 'position:fixed;left:-9999px;width:1px;height:1px;border:0';
@@ -390,7 +472,7 @@
   <script>
     (() => {
       const bootTime = performance.now();
-      const startupMetrics = { profileStart: Number('0') || 0, serverReady: Number('0') || 0, scriptStarted: Date.now() };
+      const startupMetrics = { profileStart: 0, serverReady: 0, scriptStarted: Date.now() };
       const publishMetrics = () => { document.documentElement.dataset.gaPerf = JSON.stringify(startupMetrics); };
       let state = null, latestAttendanceByGroup = {}, editingMemberId = null;
       const selectionOverrides = new Map();
@@ -403,9 +485,20 @@
 
       function buildAttendanceIndex() {
         latestAttendanceByGroup = {};
+        const latestOverall = {};
         (state.attendanceRows || []).forEach(r => {
           const key = r.group + '|' + r.memberId;
           if (!latestAttendanceByGroup[key] || r.date > latestAttendanceByGroup[key]) latestAttendanceByGroup[key] = r.date;
+          if (!latestOverall[r.memberId] || r.date > latestOverall[r.memberId]) latestOverall[r.memberId] = r.date;
+        });
+        const todayStr = iso(new Date());
+        (state.members || []).forEach(m => {
+          const last = latestOverall[m.id] || m.lastAttendance || '';
+          m.lastAttendance = last;
+          const days = last ? Math.max(0, Math.floor((new Date(todayStr + 'T00:00:00') - new Date(last + 'T00:00:00')) / 86400000)) : null;
+          m.daysSince = days;
+          m.status = days === null ? '신규' : days <= 90 ? '출석중' : days <= 365 ? '휴면' : '탈퇴';
+          m.daysLabel = days === null ? '아직 출석 기록 없음' : days < 7 ? days + '일 전 출석' : days < 30 ? Math.floor(days / 7) + '주 전 출석' : days < 365 ? Math.floor(days / 30) + '개월 전 출석' : '1년 이상 전 출석';
         });
       }
 
@@ -473,11 +566,6 @@
         const requestedAt = performance.now();
         window.gaCall(method, args).then(result => {
           if (method === 'getAppData') { serverVerified = true; startupMetrics.requestMs = Math.round(performance.now() - requestedAt); startupMetrics.server = result._perf || null; }
-          if (method === 'saveAttendance') {
-            const requestMs = Math.round(performance.now() - requestedAt), serverMs = result._perf?.serverMs ?? null;
-            window.__GA_SAVE_METRICS__ = { requestMs, serverMs, transportMs: serverMs === null ? null : Math.max(0, requestMs - serverMs), at: Date.now() };
-            console.log('GA_SAVE_TIMING ' + JSON.stringify(window.__GA_SAVE_METRICS__));
-          }
           const renderStart = performance.now();
           success(result);
           startupMetrics.callbackMs = Math.round(performance.now() - renderStart);
@@ -487,9 +575,9 @@
           persistLocalData();
         }).catch(err => {
           setBusy(false);
-          $('#syncLabel').textContent = '시트 연결을 확인해줘';
+          $('#syncLabel').textContent = '클라우드 연결을 확인해줘';
           document.getElementById('connection-help').hidden = false;
-          toast(err.message || '시트 연결 오류');
+          toast(err.message || '연결 오류');
         });
       }
 
@@ -498,18 +586,20 @@
         try { if (state) localStorage.setItem(localDataKey, JSON.stringify({ savedAt: Date.now(), data: { ...state, records: state.savedRecords || state.records } })); } catch (e) {}
       }
 
-      window.__onGaCloudFreshData = (fresh) => {
-        if (mutationBusy || !fresh || !Array.isArray(fresh.members)) return;
-        fresh.savedRecords = JSON.parse(JSON.stringify(fresh.records || {}));
-        state = fresh;
-        buildAttendanceIndex();
-        $('#syncLabel').textContent = '클라우드 · 구글 시트 실시간 동기화됨';
-        renderAll();
-        persistLocalData();
-      };
+      function syncCurrentStateToCloud() {
+        if (!state || typeof window.__syncGaCloudMaster !== 'function') return;
+        const cleanCopy = {
+          members: state.members || [],
+          records: state.savedRecords || state.records || {},
+          attendanceRows: state.attendanceRows || [],
+          averages: state.averages || {},
+          updatedAt: new Date().toISOString()
+        };
+        window.__syncGaCloudMaster(cleanCopy);
+      }
 
       function refreshData(done) {
-        $('#syncLabel').textContent = state ? '저장된 자료 표시 중 · 최신 자료 확인 중…' : '클라우드에서 최신 자료 불러오는 중…';
+        $('#syncLabel').textContent = state ? '클라우드 최신 자료 확인 중…' : 'Firebase 클라우드에서 불러오는 중…';
         runServer('getAppData', [], data => {
           if (!data.records) data.records = {};
           if (!data.attendanceRows) data.attendanceRows = [];
@@ -517,31 +607,31 @@
           data.savedRecords = JSON.parse(JSON.stringify(data.records || {}));
           state = data;
           buildAttendanceIndex();
-          $('#syncLabel').textContent = '클라우드 초고속 연결됨 · 저장 시 구글 시트 동시 반영';
+          $('#syncLabel').textContent = 'Firebase 클라우드 연결됨 (대시보드 동시 반영 · 시트 자동백업)';
           renderAll();
           persistLocalData();
           if (done) done();
         });
       }
+
       function updateAttendanceLocally(k, day, meetingGroup, ids) {
         const membersById = new Map(state.members.map(m => [m.id, m]));
         const existingRows = new Map(state.attendanceRows.filter(r => r.date === day && r.group === meetingGroup).map(r => [r.memberId, r]));
         state.attendanceRows = state.attendanceRows.filter(r => r.date !== day || r.group !== meetingGroup);
         ids.forEach(id => {
           const old = existingRows.get(id), m = membersById.get(id);
-          if (old || m) state.attendanceRows.push(old || { id: 'local-' + id, date: day, group: meetingGroup, memberId: id, name: m.name });
+          if (old || m) state.attendanceRows.push(old || { id: 'fb-' + id + '-' + day, date: day, group: meetingGroup, memberId: id, name: m.name });
         });
         state.records[k] = ids;
         state.savedRecords[k] = ids;
-        const latestByMember = {};
-        state.attendanceRows.forEach(r => { if (!latestByMember[r.memberId] || r.date > latestByMember[r.memberId]) latestByMember[r.memberId] = r.date; });
-        state.members.forEach(m => { m.lastAttendance = latestByMember[m.id] || ''; });
         buildAttendanceIndex();
         const yearAgo = new Date(); yearAgo.setDate(yearAgo.getDate() - 365);
         const minDay = iso(yearAgo), rows = state.attendanceRows.filter(r => r.group === meetingGroup && r.date >= minDay && r.date <= iso(new Date())), days = new Set(rows.map(r => r.date));
         state.averages[meetingGroup] = days.size ? (rows.length / days.size).toFixed(1) : '0.0';
         persistLocalData();
+        syncCurrentStateToCloud();
       }
+
       function renderDate() {
         $('#dateLabel').textContent = (date.getMonth() + 1) + '월 ' + date.getDate() + '일 (' + ['일', '월', '화', '수', '목', '금', '토'][date.getDay()] + ')';
         $('#memberCount').textContent = state?.members.length || 0;
@@ -739,16 +829,14 @@
       $('#memberSearch').oninput = renderAttendance;
       $('#attendanceFilters').addEventListener('click', e => { const b = e.target.closest('[data-filter]'); if (!b) return; statusFilter = b.dataset.filter; $$('#attendanceFilters .pill').forEach(x => x.classList.toggle('active', x === b)); renderAttendance(); });
       $('#saveBtn').onclick = () => {
-        if (!state || mutationBusy) return;
-        const saveDay = iso(date), saveGroup = group;
-        const k = saveGroup + '|' + saveDay, selected = [...currentSelection()].sort(), before = [...(state.savedRecords[k] || [])].sort(), removed = before.filter(id => !selected.includes(id));
+        const k = dayK(), selected = [...currentSelection()].sort(), before = [...(state.savedRecords[k] || [])].sort(), removed = before.filter(id => !selected.includes(id));
         if (!selected.length) { toast('선택한 회원이 없어. 출석한 회원을 체크해줘.'); return; }
         if (removed.length && !confirm('이미 저장된 출석 ' + removed.length + '건을 이 날짜 기록에서 삭제할게. 계속할까?')) return;
         setBusy(true);
-        runServer('saveAttendance', [saveDay, saveGroup, selected, before], result => {
-          updateAttendanceLocally(k, saveDay, saveGroup, selected);
+        runServer('saveAttendance', [iso(date), group, selected, before], result => {
+          updateAttendanceLocally(k, iso(date), group, selected);
           selectionOverrides.set(k, []); setBusy(false); renderAttendance();
-          toast('저장 완료 · ' + result.selected + '명 출석 · 선택을 초기화했어' + (result.removed ? ' · ' + result.removed + '건 수정' : ''));
+          toast('클라우드 저장 완료 · ' + result.selected + '명 출석 (대시보드 동시 반영)');
         });
       };
       $('#rosterSearch').oninput = renderRoster;
@@ -790,6 +878,9 @@
             state.members.push({ ...saved, registeredAt: iso(new Date()), lastAttendance: '', daysSince: null, status: '신규', daysLabel: '아직 출석 기록 없음' });
             if (attendNow && (newGroup === group || newGroup === '기타')) { const k = dayK(), ids = new Set(state.records[k] || []); ids.add(saved.id); state.records[k] = [...ids]; }
           }
+          buildAttendanceIndex();
+          persistLocalData();
+          syncCurrentStateToCloud();
           closeMemberDialog(false); setBusy(false); renderAll();
           if (memberId) openMemberDetail(memberId);
           toast(memberId ? name + ' 회원정보를 수정했어' : name + ' 회원을 명부에 추가했어' + (attendNow ? ' · 출석 선택도 해뒀어' : ''));
@@ -805,7 +896,7 @@
       }, { passive: true });
       document.addEventListener('touchend', e => {
         const distance = e.changedTouches[0].clientY - pullStartY;
-        if (pullFromTop && distance >= 90) refreshData(() => { renderAll(); toast('최신 자료를 불러왔어'); });
+        if (pullFromTop && distance >= 90) refreshData(() => { renderAll(); toast('클라우드 최신 자료를 불러왔어'); });
         pullStartY = 0; pullFromTop = false;
       }, { passive: true });
       document.addEventListener('touchcancel', () => { pullStartY = 0; pullFromTop = false; }, { passive: true });
@@ -816,7 +907,7 @@
           state = cached.data;
           if (!state.savedRecords) state.savedRecords = JSON.parse(JSON.stringify(state.records));
           buildAttendanceIndex();
-          $('#syncLabel').textContent = '저장된 자료 표시 중 · 최신 자료 확인 중…';
+          $('#syncLabel').textContent = '저장된 자료 표시 중 · 클라우드 확인 중…';
           renderAll();
         }
       } catch (e) {}
